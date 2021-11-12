@@ -109,8 +109,12 @@ img.medium {
   font-size: 2rem;
 }
 
-/* Rating */
+/* Rating */ 
 .rating span {
   color: #f0c040;
   margin: 0.1rem;
+}
+
+.rating span:last-child{
+  color: #404040;
 }

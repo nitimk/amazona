@@ -1,64 +1,33 @@
+
 import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomeScreen from "./screens/HomeScreen";
+import ProductScreen from "./screens/ProductScreen";
 
 function App() {
   return (
-    <div className="grid-container">
-      <header className="row">
-        <div>
-          <a className="brand" href="index.html">
-            amazona
-          </a>
-        </div>
-        <div>
-          <a href="cart.html">Cart</a>
-          <a href="signin.html">Sign In</a>
-        </div>
-      </header>
-      <main>
-        <div className="row center">
-        {
-          data.products.map(product => (
-
-          ))
-        }
-          <div className="card">
-            <a href="product.html">
-              <img className="medium" src="./images/p1.jpg" alt="product" />
+    <BrowserRouter>
+      <div className="grid-container">
+        <header className="row">
+          <div>
+            <a className="brand" href="/">
+              amazona
             </a>
-            <div className="card-body">
-              <a href="product.hrml">
-                <h2>Chanel perfume N05</h2>
-              </a>
-              <div className="rating">
-                <span>
-                  {" "}
-                  <i className="fa fa-star"></i>{" "}
-                </span>
-                <span>
-                  <i className="fa fa-star"></i>
-                </span>
-                <span>
-                  {" "}
-                  <i className="fa fa-star"></i>{" "}
-                </span>
-                <span>
-                  {" "}
-                  <i className="fa fa-star"></i>{" "}
-                </span>
-                <span>
-                  {" "}
-                  <i className="fa fa-star"></i>{" "}
-                </span>
-              </div>
-              <div className="price"> $120 </div>
-            </div>
           </div>
-        
-          
-        </div>
-      </main>
-      <footer className="row center">All right reserved </footer>
-    </div>
+          <div>
+            <a href="/cart">Cart</a>
+            <a href="/signin">Sign In</a>
+          </div>
+        </header>
+        <main>
+          <Routes>
+            <Route path="/product/:id" element={<ProductScreen />}></Route>
+            <Route path="/" element={<HomeScreen />} exact></Route>
+          </Routes>
+        </main>
+        <footer className="row center">All right reserved </footer>
+      </div>
+    </BrowserRouter>
   );
 }
 
