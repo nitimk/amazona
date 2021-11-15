@@ -1,16 +1,21 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 import Rating from "../components/Rating";
 import data from "../data";
+import { withRouter } from "react-router";
 
-export default function ProductScreen(props) {
-  const product = data.products.find(x => x._id === props.match.params.id)
-  if (!product) {
-    return <div>Product Not Found</div>;
-  }
+function ProductScreen(props) {
+  const product = data.products.find((x) => x._id === props.match.params.id);
+
+  //export default function ProductScreen(props) {
+  //const product = data.products.find((x) => x._id === props.match.params.id);
+  //if (!product) {
+  //return <div> Product Not Found</div>;
+  //}
   return (
     <div>
-      <div className="row">
+      <Link to="/">Back to result</Link>
+      <div className="row top">
         <div className="col-2">
           <img className="large" src={product.image} alt={product.name}></img>
         </div>
@@ -20,12 +25,13 @@ export default function ProductScreen(props) {
               <h1>{product.name}</h1>
             </li>
             <li>
-              <Rating>
+              <Rating
                 rating={product.rating}
                 numReviews={product.numReviews}
-              </Rating>
+              ></Rating>
             </li>
             <li>Price : ${product.price}</li>
+
             <li>
               Description:
               <p>{product.description}</p>
@@ -46,7 +52,7 @@ export default function ProductScreen(props) {
                   <div>Status</div>
                   <div>
                     {product.countInStock > 0 ? (
-                      <span className="success">In Stock </span>
+                      <span className="success">In Stock</span>
                     ) : (
                       <span className="error">Unavailable</span>
                     )}
@@ -63,3 +69,5 @@ export default function ProductScreen(props) {
     </div>
   );
 }
+
+export default withRouter(ProductPage);
