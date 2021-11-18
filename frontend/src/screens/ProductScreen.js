@@ -1,17 +1,16 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import data from "../data";
-import { withRouter } from "react-router";
 
-function ProductScreen(props) {
-  const product = data.products.find((x) => x._id === props.match.params.id);
-
-  //export default function ProductScreen(props) {
-  //const product = data.products.find((x) => x._id === props.match.params.id);
-  //if (!product) {
-  //return <div> Product Not Found</div>;
-  //}
+export default function ProductScreen() {
+  const { id } = useParams();
+  console.log(id);
+  const product = data.products.find((x) => x._id === id);
+  console.log(product);
+   if (!product) {
+    return <div> Product Not Found</div>;
+  }
   return (
     <div>
       <Link to="/">Back to result</Link>
@@ -69,5 +68,3 @@ function ProductScreen(props) {
     </div>
   );
 }
-
-export default withRouter(ProductPage);
