@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Rating from "../components/Rating";
 import data from "../data";
 
@@ -8,7 +8,7 @@ export default function ProductScreen() {
   console.log(id);
   const product = data.products.find((x) => x._id === id);
   console.log(product);
-   if (!product) {
+  if (!product) {
     return <div> Product Not Found</div>;
   }
   return (
@@ -16,7 +16,14 @@ export default function ProductScreen() {
       <Link to="/">Back to result</Link>
       <div className="row top">
         <div className="col-2">
-          <img className="large" src={product.image} alt={product.name}></img>
+          <img
+            margin="top-center"
+            height="600px"
+            width="500px"
+            className="large"
+            src={product.image}
+            alt={product.name}
+          ></img>
         </div>
         <div className="col-1">
           <ul>
