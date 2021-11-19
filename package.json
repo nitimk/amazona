@@ -1,0 +1,19 @@
+{
+  "name": "amazona",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nitimk/amazona.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nitimk/amazona/issues"
+  },
+  "homepage": "https://github.com/nitimk/amazona#readme",
+  "description": ""
+}
