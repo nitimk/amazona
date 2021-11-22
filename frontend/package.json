@@ -1,5 +1,6 @@
 {
   "name": "frontend",
+  "proxy": "http://127.0.0.1:5000",
   "type": "module",
   "version": "0.1.0",
   "private": true,
@@ -7,6 +8,8 @@
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",
+    "axios": "^0.24.0",
+    "concurrently": "^6.4.0",
     "express": "^4.17.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -15,9 +18,10 @@
     "web-vitals": "^1.1.2"
   },
   "scripts": {
-    "start": "nodemon --watch backend --exec node --experimental-modules backend/server.js ",
+    "server": "nodemon backend/server",
+    "start": "react-scripts start ",
+    "dev": "concurrently \"npm run server\" \"npm start\"",
     "build": "react-scripts build",
-    
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
