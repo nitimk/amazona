@@ -6,14 +6,17 @@ import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Rating from "../components/Rating";
 
-export default function ProductScreen(props) {
+export default function ProductScreen() {
   const dispatch = useDispatch();
-  const productId = props.match.params.id;
+  console.log(dispatch);
+ // const productId = props.match.params.id;
+ const { productId } = useParams();
+ console.log(productId);
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
 
   useEffect(() => {
-    dispatchEvent(detailsProduct(productId));
+    dispatch(detailsProduct(productId));
   }, [dispatch, productId]);
 
   return (
