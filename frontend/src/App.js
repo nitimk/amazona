@@ -22,7 +22,7 @@ function App() {
         </header>
         <main>
           <Routes>
-            <Route path="/cart/:id?"  component={CartScreen}></Route>
+            <Route path="/cart/:productId" element={<CartScreen />}></Route>
             <Route
               path="/product/:productId"
               element={<ProductScreen />}
