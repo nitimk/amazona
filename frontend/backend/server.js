@@ -1,14 +1,19 @@
 import express from "express";
-import  Mongoose  from "mongoose";
+import mongoose from "mongoose";
 import data from "./data.js";
 import userRouter from "./routers/userRouter.js";
+import dotenv from "dotenv";
 
 const app = express();
-Mongoose.connect('mongodb://localhost/frontend',{
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
+//dotenv.config({ path: MONGODB_URL });
+mongoose.connect(
+  "mongodb+srv://prakash07:nmpnmpnmp@cluster0.hqry7.mongodb.net/Amazona?retryWrites=true&w=majority",
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    // useCreateIndex: true,
+  }
+);
 
 app.get("/api/products/:id", (req, res) => {
   const product = data.products.find((x) => x._id === req.params.id);
@@ -22,11 +27,16 @@ app.get("/api/products/:id", (req, res) => {
 app.get("/api/products", (req, res) => {
   res.send(data.products);
 });
-app.use('/api/users', userRouter);
+app.use("/api/users", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Server is ready");
 });
+
+app.use((err, req, res, next) => {
+  res.status(500).send({ message: err.message });
+});
+
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`serve at http://localhost:${port}`);
