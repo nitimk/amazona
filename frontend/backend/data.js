@@ -1,23 +1,22 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from "bcryptjs";
 const data = {
-    users: [
-      {
-        name:'Niti',
-        email:'nitimk@gmail.com',
-        password: bcrypt.hashSync('1234',8),
-        isAdmin: true,
-      },
-      {
-        name:'Prakash',
-        email:'prakash.pacs@gmail.com',
-        password: bcrypt.hashSync('1234',8),
-        isAdmin: false,
-      },
-    ],
+  users: [
+    {
+      name: "Niti",
+      email: "nitimk@gmail.com",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: true,
+    },
+    {
+      name: "Prakash",
+      email: "prakash.pacs@gmail.com",
+      password: bcrypt.hashSync("1234", 8),
+      isAdmin: false,
+    },
+  ],
 
   products: [
     {
-      _id: "1",
       name: "Chanel Perfume No5",
       category: "Perfume",
       image: "/images/p1.jpg",
@@ -30,7 +29,6 @@ const data = {
     },
 
     {
-      _id: "2",
       name: "Women Heels",
       category: "Shoes",
       image: "/images/p2.jpg",
@@ -43,7 +41,6 @@ const data = {
     },
 
     {
-      _id: "3",
       name: "Gucci handbag",
       category: "Handbag",
       image: "/images/p3.jpg",
@@ -56,7 +53,6 @@ const data = {
     },
 
     {
-      _id: "4",
       name: "Rado Watch",
       category: "Watch",
       image: "/images/p4.jpg",
@@ -69,7 +65,6 @@ const data = {
     },
 
     {
-      _id: "5",
       name: "Aldo sunglasses",
       category: "Accessories",
       image: "/images/p5.jpg",
@@ -82,7 +77,6 @@ const data = {
     },
 
     {
-      _id: "6",
       name: "Nike Shoes",
       category: "Shoes",
       image: "/images/p6.jpg",
