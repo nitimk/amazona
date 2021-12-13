@@ -6,7 +6,9 @@ import dotenv from "dotenv";
 import productRouter from "./routers/productRouter.js";
 
 const app = express();
-//dotenv.config({ path: MONGODB_URL });
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+dotenv.config();
 mongoose.connect(
   "mongodb+srv://prakash07:nmpnmpnmp@cluster0.hqry7.mongodb.net/Amazona?retryWrites=true&w=majority",
   {
@@ -15,9 +17,6 @@ mongoose.connect(
     // useCreateIndex: true,
   }
 );
-
-
-
 
 app.use("/api/users", userRouter);
 
