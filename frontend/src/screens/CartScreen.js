@@ -10,6 +10,9 @@ export default function CartScreen() {
   const qty = location.pathname ? Number(location.search.split("=")[1]) : 1;
   const navigate = useNavigate();
 
+  const userSignin = useSelector((state) => state.userSignin);
+  const { userInfo } = userSignin;
+
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
   const dispatch = useDispatch();
@@ -25,7 +28,11 @@ export default function CartScreen() {
   };
 
   const checkoutHandler = () => {
-    navigate("/signin?redirect=shipping");
+    if (userInfo) {
+      navigate("/shipping");
+    } else {
+      navigate("/signin");
+    }
   };
   return (
     <div className="row top">

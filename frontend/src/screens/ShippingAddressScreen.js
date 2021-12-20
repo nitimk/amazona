@@ -6,5 +6,5 @@ export default function ShippingAddressScreen() {
         <div>
             <CheckoutSteps step1 step2></CheckoutSteps>
         </div>
-    )
+    );
 }
