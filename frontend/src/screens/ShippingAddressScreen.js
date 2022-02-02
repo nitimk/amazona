@@ -23,10 +23,12 @@ export default function ShippingAddressScreen() {
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(saveShippingAddress(fullName, address, city, postalCode, country));
-    // TODO: dispatch save shipping address action
+    
   };
   //const navigate = useNavigate();
-  if (!userInfo) {
+  
+
+  if (userInfo) {
     navigate("/payment");
   }
 
