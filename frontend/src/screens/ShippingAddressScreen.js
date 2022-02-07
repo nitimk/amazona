@@ -11,6 +11,7 @@ export default function ShippingAddressScreen() {
   const { userInfo } = userSignin;
   const cart = useSelector((state) => state.cart);
   const { shippingAddress } = cart;
+  console.log(shippingAddress);
   if (!userInfo) {
     navigate("/signin");
   }
@@ -21,17 +22,18 @@ export default function ShippingAddressScreen() {
   const [country, setCountry] = useState(shippingAddress.country);
   const dispatch = useDispatch();
   const submitHandler = (e) => {
+    if (userInfo) {
+      navigate("/payment");
+    }
+  
     e.preventDefault();
-    dispatch(saveShippingAddress(fullName, address, city, postalCode, country));
+    dispatch(saveShippingAddress({fullName, address, city, postalCode, country}));
     
   };
   //const navigate = useNavigate();
   
 
-  if (userInfo) {
-    navigate("/payment");
-  }
-
+  
   // this.props.dispatch(userInfo());
   //browserHistory.push("/payment");
 
