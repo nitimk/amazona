@@ -14,6 +14,12 @@ export default function PaymentMethodScreen() {
   if (!shippingAddress.address) {
     navigate("/shipping");
   }
+  cduseEffect(() => {
+    //if (productId) {
+      //dispatch(addToCart(productId, qty));
+  //  }
+  //}, [dispatch, productId, qty]);
+
   const [paymentMethod, setPaymentMethod] = useState("Paypal");
   const dispatch = useDispatch();
   //const navigate = useNavigate();
