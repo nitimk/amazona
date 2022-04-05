@@ -1,32 +1,20 @@
-import React from "react";
-import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-//import { Navigate } from "react-router-dom";
-import { savePaymentMethod } from "../actions/cartActions";
-import CheckoutSteps from "../components/CheckoutSteps";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { savePaymentMethod } from '../actions/cartActions';
+import CheckoutSteps from '../components/CheckoutSteps';
 
-export default function PaymentMethodScreen() {
+export default function PaymentMethodScreen(props) {
   const cart = useSelector((state) => state.cart);
-  console.log(cart);
-  const navigate = useNavigate();
   const { shippingAddress } = cart;
   if (!shippingAddress.address) {
-    navigate("/shipping");
+    props.history('/shipping');
   }
-  cduseEffect(() => {
-    //if (productId) {
-      //dispatch(addToCart(productId, qty));
-  //  }
-  //}, [dispatch, productId, qty]);
-
-  const [paymentMethod, setPaymentMethod] = useState("Paypal");
+  const [paymentMethod, setPaymentMethod] = useState('PayPal');
   const dispatch = useDispatch();
-  //const navigate = useNavigate();
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(savePaymentMethod(paymentMethod));
-    navigate("/placeorder");
+    props.history.push('/placeorder');
   };
   return (
     <div>
@@ -40,16 +28,15 @@ export default function PaymentMethodScreen() {
             <input
               type="radio"
               id="paypal"
-              value="Paypal"
+              value="PayPal"
               name="paymentMethod"
               required
               checked
               onChange={(e) => setPaymentMethod(e.target.value)}
             ></input>
-            <label htmlFor="paypal">paypal</label>
+            <label htmlFor="paypal">PayPal</label>
           </div>
         </div>
-
         <div>
           <div>
             <input
@@ -64,6 +51,7 @@ export default function PaymentMethodScreen() {
           </div>
         </div>
         <div>
+          <label />
           <button className="primary" type="submit">
             Continue
           </button>

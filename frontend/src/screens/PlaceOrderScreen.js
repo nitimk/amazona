@@ -10,8 +10,8 @@ import Messagebox from "../components/MessageBox";
 export default function PlaceOrderScreen() {
   const cart = useSelector((state) => state.cart);
   const navigate = useNavigate();
-  if (cart.paymentMethod) {
-    navigate("/order");
+  if (!cart.paymentMethod) {
+    navigate("/payment");
   }
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
