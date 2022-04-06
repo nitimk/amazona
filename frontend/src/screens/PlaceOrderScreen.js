@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { createOrder } from "../actions/orderActions";
 import CheckoutSteps from "../components/CheckoutSteps";
-import { ORDER_CREATE_RESET } from "../constants/orderConstants";
+import { ORDER_CREATE_RESET } from '../constants/orderConstants';
 import LoadingBox from "../components/LoadingBox";
 import Messagebox from "../components/MessageBox";
 
@@ -13,12 +13,15 @@ export default function PlaceOrderScreen() {
   if (!cart.paymentMethod) {
     navigate("/payment");
   }
+  const location = useLocation();
   const orderCreate = useSelector((state) => state.orderCreate);
   const { loading, success, error, order } = orderCreate;
   const toPrice = (num) => Number(num.toFixed(2)); // 5.123 => "5.12" => 5.12
   cart.itemsPrice = toPrice(
     cart.cartItems.reduce((a, c) => a + c.qty * c.price, 0)
   );
+  const redirect = location.search ? location.search.split("=")[1] : "/";
+  
   cart.shippingPrice = cart.itemsPrice > 100 ? toPrice(0) : toPrice(10);
   cart.taxPrice = toPrice(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
@@ -26,12 +29,31 @@ export default function PlaceOrderScreen() {
   const placeOrderHandler = () => {
     dispatch(createOrder({ ...cart, orderItems: cart.cartItems }));
   };
-  useEffect(() => {
-    if (success) {
-      navigate(`/order/${order._id}`);
-      dispatch({ type: ORDER_CREATE_RESET });
-    }
-  }, [dispatch, order, success]);
+    useEffect(() => {
+      if (success) {
+        navigate(redirect);
+      }
+    }, [redirect,success,order])
+
+    useEffect (() => {
+      if (success) {
+        navigate(`/order/$(order._id)`);
+        dispatch({type: ORDER_CREATE_RESET});
+      }
+    })
+
+  //useEffect(() => {
+    //if (success) {
+      //navigate();
+      //dispatch({ type: ORDER_CREATE_RESET });
+    //}
+  //}, [ order, success]);
+
+  //useEffect(() => {
+    //if (userInfo) {
+      //navigate(redirect);
+    //}
+  //}, [redirect, userInfo]);
   return (
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
